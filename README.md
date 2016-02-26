@@ -1,35 +1,40 @@
 # rmdformats
 
 [![Travis-CI Build Status](https://travis-ci.org/juba/rmdformats.svg?branch=master)](https://travis-ci.org/juba/rmdformats)
-<!-- [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/rmdformats)](http://cran.r-project.org/package=rmdformats) -->
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/rmdformats)](http://cran.r-project.org/package=rmdformats)
+![CRAN Downloads](http://cranlogs.r-pkg.org/badges/last-month/rmdformats) 
 
 
 This R package provides ready-to-use HTML output formats and templates for
 RMarkdown documents. The goal is to produce clean documents "out of the box",
 with or without the RStudio IDE.
 
-## Formats
+## Formats gallery
 
-The package provides two HTML output formats. You can click on an image to see a real HTML output sample.
+The package provides several HTML output formats. You can click on an image to see a real HTML output sample.
+
+### `readthedown` format 
+
+[![](resources/screenshots/readthedown.png)](https://rawgit.com/juba/rmdformats/master/resources/examples/readthedown/readthedown.html)
 
 ### `html_clean` format 
 
-[![](resources/screenshots/html_clean.png)](https://cdn.rawgit.com/juba/rmdformats/master/resources/examples/html_clean/html_clean_sample.html)
+[![](resources/screenshots/html_clean.png)](https://rawgit.com/juba/rmdformats/master/resources/examples/html_clean/html_clean_sample.html)
 
 
 
 ### `html_docco` format 
 
-[![](resources/screenshots/html_docco.png)](https://cdn.rawgit.com/juba/rmdformats/master/resources/examples/html_docco/html_docco_sample.html)
-
+[![](resources/screenshots/html_docco.png)](https://rawgit.com/juba/rmdformats/master/resources/examples/html_docco/html_docco_sample.html)
 
 
 ## Features and helpers
 
 Some extra features are available depending on the format :
 
-- both formats provide automatic thumbnails for figures with lightbox display
-- `html_clean` provides an automatic and dynamic javascript table of contents
+- `readthedown` is fully responsive, with collapsible navigation
+- `html_clean` and `readthedown` provide an automatic and dynamic table of contents
+- `html_clean` and `html_docco` provide automatic thumbnails for figures with lightbox display
 
 The package also provides a `create.doc()` function as well as RStudio document
 templates to easily generate an empty and ready to use rmarkdown file with
@@ -40,7 +45,13 @@ Finally, it also provides the `pilltabs()` helper function, which allows to disp
 
 ## Installation
 
-The package is not available on CRAN yet, but it is installable from Github :
+You can install the latest stable release from CRAN :
+
+```r
+install.packages("rmdformats")
+```
+
+Or the latest development snapshot from GitHub :
 
 ```r
 install.packages(devtools)  # if necessary
@@ -105,6 +116,7 @@ make clean
 - [Magnific popup](http://dimsemenov.com/plugins/magnific-popup/) lightbox plugin
 - The code of `create.doc()` is heavily inspired by the `create.project()` function of the [ProjectTemplate package](http://projecttemplate.net/)
 - The CSS for the `html_docco` format is heavily inspired from the default one of the [docco](https://jashkenas.github.io/docco/) project.
+- The CSS and JavaScript for `readthedown` is adapted from the corresponding `readtheorg` theme of the [org-html-themes](https://github.com/fniessen/org-html-themes) project, which is itself inspired by the [Read the docs](https://readthedocs.org/) [Sphinx](http://sphinx-doc.org/) theme.
 
 The `html_clean` styling and features are very similar to the ones from the great
 [knitrBootstrap package](https://github.com/jimhester/knitrBootstrap) by Jim

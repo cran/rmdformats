@@ -17,8 +17,8 @@
 #' @export
 
 
-html_clean <- function(fig_width = 6,
-                       fig_height = 6,
+readthedown <- function(fig_width = 8,
+                       fig_height = 5,
                        fig_caption = TRUE,
                        highlight = "kate",
                        pandoc_args = NULL,
@@ -26,11 +26,9 @@ html_clean <- function(fig_width = 6,
  
   ## js and css dependencies
   extra_dependencies <- list(html_dependency_jquery(),
-                             html_dependency_bootstrap("bootstrap"),
-                             html_dependency_jquery_ui(),
-                             html_dependency_tocify(),
-                             html_dependency_magnific_popup(),
-                             html_dependency_clean())
+                             html_dependency_bootstrap(),
+                             #html_dependency_jquery_stickytableheaders(),
+                             html_dependency_readthedown())
   
   ## Force mathjax arguments
   pandoc_args <- c(pandoc_args, 
@@ -38,23 +36,27 @@ html_clean <- function(fig_width = 6,
                    "--variable", paste0("mathjax-url:", default_mathjax()))
   
   rmarkdown::html_document(
-      template = system.file("templates/html_clean/default.html", package = "rmdformats"),
+      template = system.file("templates/readthedown/default.html", package = "rmdformats"),
       extra_dependencies = extra_dependencies,
       fig_width = fig_width,
       fig_height = fig_height,
       fig_caption = fig_caption,
       highlight = highlight,
       pandoc_args = pandoc_args,
+      toc = TRUE,
+      toc_depth = 2,
       ...
     )
       
 }
 
-# html_clean js and css
-html_dependency_clean <- function() {
-  htmltools::htmlDependency(name = "clean",
+# readthedown js and css
+html_dependency_readthedown <- function() {
+  htmltools::htmlDependency(name = "readthedown",
                  version = "0.1",
-                 src = system.file("templates/html_clean", package = "rmdformats"),
-                 script = "clean.js",
-                 stylesheet = "clean.css")
+                 src = system.file("templates/readthedown", package = "rmdformats"),
+                 script = "readthedown.js",
+                 stylesheet = c("readthedown.css"))
 }
+
+

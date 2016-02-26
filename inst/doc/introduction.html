@@ -10,7 +10,7 @@
 
 <meta name="author" content="Julien Barnier" />
 
-<meta name="date" content="2015-12-09" />
+<meta name="date" content="2016-02-26" />
 
 <title>rmdformats usage</title>
 
@@ -54,7 +54,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <div id="header">
 <h1 class="title"><code>rmdformats</code> usage</h1>
 <h4 class="author"><em>Julien Barnier</em></h4>
-<h4 class="date"><em>2015-12-09</em></h4>
+<h4 class="date"><em>2016-02-26</em></h4>
 </div>
 
 
@@ -63,6 +63,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <h2>Formats</h2>
 <p>The package provides two HTML output formats :</p>
 <ul>
+<li>the <code>readthedown</code> format</li>
 <li>the <code>html_clean</code> format</li>
 <li>the <code>html_docco</code> format</li>
 </ul>
@@ -78,7 +79,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <p>The <code>create.doc()</code> function allows you to create a new directory with a clean ready-to-use RMarkdown file. <code>create.doc()</code> gets two main arguments :</p>
 <ul>
 <li><code>dirname</code> is the name of the folder and RMarkdown file to be created</li>
-<li><code>format</code> is the format name (<code>&quot;html_clean&quot;</code> or <code>&quot;html_docco&quot;</code>)</li>
+<li><code>format</code> is the format name (<code>&quot;readthedown&quot;</code>, <code>&quot;html_clean&quot;</code> or <code>&quot;html_docco&quot;</code>)</li>
 </ul>
 <p>By default, a <code>Makefile</code> file will be created in the new folder for direct rendering from the command line.</p>
 </div>
@@ -108,8 +109,9 @@ make pdf</code></pre>
 <h2>Extra features and helpers</h2>
 <p>Some extra features are available depending on the format :</p>
 <ul>
-<li>both formats provide automatic thumbnails for figures with lightbox display</li>
-<li><code>html_clean</code> provides an automatic and dynamic javascript table of contents</li>
+<li><code>readthedown</code> is fully responsive, with collapsible navigation</li>
+<li><code>html_clean</code> and <code>readthedown</code> provide an automatic and dynamic table of contents</li>
+<li><code>html_clean</code> and <code>html_docco</code> provide automatic thumbnails for figures with lightbox display</li>
 </ul>
 <p>The package also provides a <code>create.doc()</code> function as well as RStudio document templates to easily generate an empty and ready to use rmarkdown file with several configuration directives.</p>
 <p>Finally, it also provides the <code>pilltabs()</code> helper function, which allows to display a crosstab dynamically. See <a href="https://rawgit.com/juba/rmdformats/master/resources/examples/html_clean/html_clean_sample.html#Table">one of the output samples</a> for a live example.</p>

@@ -1,5 +1,11 @@
-rmdformats 0.1
---------------
+rmdformats 0.2
+----------------
+
+* New `readthedown` HTML template
+
+
+rmdformats 0.1.1
+----------------
 
 * Cleanup and document package for CRAN submission
 * Copy html_dependency_* and default_mathjax from rmarkdown to fix check notes
