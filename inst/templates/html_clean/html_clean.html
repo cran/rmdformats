@@ -59,6 +59,24 @@ $for(css)$
 <link rel="stylesheet" href="$css$" $if(html5)$$else$type="text/css" $endif$/>
 $endfor$
 
+<!-- tabsets -->
+<script src="$navigationjs$/tabsets.js"></script>
+<script>
+$$(document).ready(function () {
+  window.buildTabsets("$idprefix$TOC");
+});
+</script>
+
+<!-- code folding -->
+$if(code_folding)$
+<script src="$navigationjs$/codefolding.js"></script>
+<script>
+$$(document).ready(function () {
+  window.initializeCodeFolding("$code_folding$" === "show");
+});
+</script>
+$endif$
+
 </head>
 
 <body>
@@ -74,9 +92,9 @@ code {
   color: inherit;
   background-color: rgba(0, 0, 0, 0.04);
 }
-img { 
-  max-width:100%; 
-  height: auto; 
+img {
+  max-width:100%;
+  height: auto;
 }
 </style>
 <div class="container-fluid main-container">
@@ -89,6 +107,15 @@ $for(include-before)$
 $include-before$
 $endfor$
 
+$if(code_folding)$
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="text-muted">Code</span> <span class="text-muted caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All</a></li>
+</ul>
+</div>
+$endif$
 
 $if(title)$
 <div id="$idprefix$header">
@@ -116,7 +143,9 @@ $endif$
 </div>
 $endif$
 
+<div id="content">
 $body$
+</div>
 
 $for(include-after)$
 $include-after$
@@ -125,22 +154,48 @@ $endfor$
 $if(theme)$
     </div>
     <div class="col-md-2">
-      <div id="toc" class="tocify"> 
+      <div id="toc">
       	<button type="button" class="close">×</button>
+        $toc$
       </div>
     </div>
   </div>
 </div>
 
 <script>
-
-// add bootstrap table styles to pandoc tables
 $$(document).ready(function () {
-  $$('tr.header').parent('thead').parent('table').addClass('table table-condensed');
-});
 
+  // add bootstrap table styles to pandoc tables
+  $$('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+
+});
 </script>
 $endif$
+
+<script>
+$$(document).ready(function () {
+ 	$if(thumbnails)$
+ 	$$('#content img')
+ 	  .addClass("image-thumb");
+  $endif$
+  $if(lightbox)$
+  $$('#content img')
+ 	  .addClass("image-lb");
+  $$('#content').magnificPopup({
+	      type:'image',
+	      closeOnContentClick: false,
+	      delegate: 'img',
+	      gallery: {enabled: $gallery$ },
+	      image: {
+	        verticalFit: true,
+          titleSrc: 'alt'
+	      }
+ 	    });
+ 	$endif$
+});
+</script>
+
+
 
 $if(mathjax-url)$
 <!-- dynamically load mathjax for compatibility with self-contained -->

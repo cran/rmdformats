@@ -5,7 +5,8 @@
 \title{Convert to an HTML document}
 \usage{
 html_docco(fig_width = 6, fig_height = 6, fig_caption = TRUE,
-  highlight = "pygments", pandoc_args = NULL, ...)
+  highlight = "pygments", lightbox = TRUE, thumbnails = TRUE,
+  gallery = FALSE, pandoc_args = NULL, use_bookdown = FALSE, ...)
 }
 \arguments{
 \item{fig_width}{Default width (in inches) for figures}
@@ -19,14 +20,26 @@ html_docco(fig_width = 6, fig_height = 6, fig_caption = TRUE,
 "zenburn", "haddock", and "textmate". Pass \code{NULL} to prevent syntax
 highlighting.}
 
-\item{pandoc_args}{arguments passed to the pandoc_args argument of rmarkdown \code{\link{html_document}}}
+\item{lightbox}{if TRUE, add lightbox effect to content images}
 
-\item{...}{Additional function arguments passed to rmarkdown \code{\link{html_document}}}
+\item{thumbnails}{if TRUE display content images as thumbnails}
+
+\item{gallery}{if TRUE and lightbox is TRUE, add a gallery navigation between images in lightbox display}
+
+\item{pandoc_args}{arguments passed to the pandoc_args argument of rmarkdown \code{\link[rmarkdown]{html_document}}}
+
+\item{use_bookdown}{if TRUE, uses \code{\link[bookdown]{html_document2}} instead of \code{\link[rmarkdown]{html_document}}, thus providing numbered sections and cross references}
+
+\item{...}{Additional function arguments passed to rmarkdown \code{\link[rmarkdown]{html_document}}}
 }
 \value{
-R Markdown output format to pass to \code{\link{render}}
+R Markdown output format to pass to \code{\link[rmarkdown]{render}}
 }
 \description{
 Format for converting from R Markdown to an HTML document.
+}
+\details{
+The CSS is heavily inspired from the default one of the docco project :
+\url{https://jashkenas.github.io/docco/}.
 }
 
