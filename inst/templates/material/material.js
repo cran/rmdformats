@@ -12,7 +12,7 @@ $(function() {
       $("html, body").height($(window).height());
       $(".main, .menu").height($(window).height() - $(".header-panel").outerHeight());
       $(".pages").height($(window).height());
-    }).trigger("resize");
+    }).trigger("resize"); 
 
     function toggle_page(id) {
       $(".page").not(page).removeClass("active").hide();
@@ -33,11 +33,15 @@ $(function() {
           clearInterval(totop);
         }, 1000);
       }, 100);
+
+      window.dispatchEvent(new Event('resize'));
+
     }
 
     $('a[href*="#"]').click(function() {
 
       var id = $(this).attr("href");
+      if (id === "#") return;
       if (id.substring(0, 8) === "#dyntab-") return;
       toggle_page(id);
 
@@ -45,6 +49,8 @@ $(function() {
       var menu_entry = $(".menu li[data-target='"+id+"']");
       menu_entry.addClass("active");
       $(".menu li").not(menu_entry).removeClass("active"); 
+      
+
     });
 
     $(".menu li").click(function () {
@@ -57,7 +63,6 @@ $(function() {
       $(".menu li").not($(this)).removeClass("active");
       $(this).addClass("active");
 
-      
     });
 
 });
