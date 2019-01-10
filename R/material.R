@@ -16,8 +16,10 @@
 #' @param lightbox if TRUE, add lightbox effect to content images
 #' @param thumbnails if TRUE display content images as thumbnails
 #' @param gallery if TRUE and lightbox is TRUE, add a gallery navigation between images in lightbox display
+#' @param cards if TRUE, sections will be presented as distinct and animated cards
 #' @param pandoc_args arguments passed to the pandoc_args argument of rmarkdown \code{\link[rmarkdown]{html_document}}
 #' @param use_bookdown if TRUE, uses \code{\link[bookdown]{html_document2}} instead of \code{\link[rmarkdown]{html_document}}, thus providing numbered sections and cross references
+#' @param mathjax set to NULL to disable Mathjax insertion
 #' @param ... Additional function arguments passed to R Markdown \code{\link[rmarkdown]{html_document}}
 #' @return R Markdown output format to pass to \code{\link[rmarkdown]{render}}
 #' @import rmarkdown
@@ -27,15 +29,17 @@
 
 
 material <- function(fig_width = 6,
-                       fig_height = 6,
-                       fig_caption = TRUE,
-                       highlight = "kate",
-                       lightbox = TRUE,
-                       thumbnails = TRUE,
-                       gallery = FALSE,
-                       pandoc_args = NULL,
-                       use_bookdown = FALSE,
-                       ...) {
+                     fig_height = 6,
+                     fig_caption = TRUE,
+                     highlight = "kate",
+                     lightbox = TRUE,
+                     thumbnails = TRUE,
+                     gallery = FALSE,
+                     cards = TRUE,
+                     mathjax = "rmdformats",
+                     pandoc_args = NULL,
+                     use_bookdown = FALSE,
+                     ...) {
 
   ## js and css dependencies
   extra_dependencies <- list(rmarkdown::html_dependency_jquery(),
@@ -47,9 +51,11 @@ material <- function(fig_width = 6,
                              html_dependency_material())
 
   ## Force mathjax arguments
-  pandoc_args <- c(pandoc_args,
-                   "--mathjax",
-                   "--variable", paste0("mathjax-url:", default_mathjax()))
+  if (!is.null(mathjax)) {
+    pandoc_args <- c(pandoc_args,
+                     "--mathjax",
+                     "--variable", paste0("mathjax-url:", default_mathjax()))
+  }
   if (lightbox) { pandoc_args <- c(pandoc_args, "--variable", "lightbox:true") }
   if (thumbnails) { pandoc_args <- c(pandoc_args, "--variable", "thumbnails:true") }
   if (gallery) {
@@ -57,6 +63,7 @@ material <- function(fig_width = 6,
   } else {
     pandoc_args <- c(pandoc_args, "--variable", "gallery:false")
   }
+  if (cards) { pandoc_args <- c(pandoc_args, "--variable", "cards:true") }
 
   ## Merge "extra_dependencies"
   extra_args <- list(...)

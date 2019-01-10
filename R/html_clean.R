@@ -18,8 +18,10 @@
 #' @param thumbnails if TRUE display content images as thumbnails
 #' @param gallery if TRUE and lightbox is TRUE, add a gallery navigation between images in lightbox display
 #' @param pandoc_args arguments passed to the pandoc_args argument of rmarkdown \code{\link[rmarkdown]{html_document}}
+#' @param toc if TRUE, display a table of contents
 #' @param toc_depth adjust table of contents depth
 #' @param use_bookdown if TRUE, uses \code{\link[bookdown]{html_document2}} instead of \code{\link[rmarkdown]{html_document}}, thus providing numbered sections and cross references
+#' @param mathjax set to NULL to disable Mathjax insertion
 #' @param ... Additional function arguments passed to R Markdown \code{\link[rmarkdown]{html_document}}
 #' @return R Markdown output format to pass to \code{\link[rmarkdown]{render}}
 #' @import rmarkdown
@@ -37,6 +39,8 @@ html_clean <- function(fig_width = 6,
                        gallery = FALSE,
                        pandoc_args = NULL,
                        toc_depth = 2,
+                       toc = TRUE,
+                       mathjax = "rmdformats",
                        use_bookdown = FALSE,
                        ...) {
 
@@ -49,9 +53,11 @@ html_clean <- function(fig_width = 6,
                              html_dependency_clean())
 
   ## Force mathjax arguments
-  pandoc_args <- c(pandoc_args,
-                   "--mathjax",
-                   "--variable", paste0("mathjax-url:", default_mathjax()))
+  if (!is.null(mathjax)) {
+    pandoc_args <- c(pandoc_args,
+                     "--mathjax",
+                     "--variable", paste0("mathjax-url:", default_mathjax()))
+  }
   if (lightbox) { pandoc_args <- c(pandoc_args, "--variable", "lightbox:true") }
   if (thumbnails) { pandoc_args <- c(pandoc_args, "--variable", "thumbnails:true") }
   if (gallery) {
@@ -77,7 +83,7 @@ html_clean <- function(fig_width = 6,
     fig_caption = fig_caption,
     highlight = highlight,
     pandoc_args = pandoc_args,
-    toc = TRUE,
+    toc = toc,
     toc_depth = toc_depth
   )
   html_document_args <- append(html_document_args, extra_args)
