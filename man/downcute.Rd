@@ -8,7 +8,6 @@ downcute(
   fig_width = 8,
   fig_height = 5,
   fig_caption = TRUE,
-  highlight = NULL,
   lightbox = FALSE,
   thumbnails = FALSE,
   gallery = FALSE,
@@ -28,11 +27,6 @@ downcute(
 
 \item{fig_caption}{\code{TRUE} to render figures with captions}
 
-\item{highlight}{Syntax highlighting style. Supported styles include
-"default", "tango", "pygments", "kate", "monochrome", "espresso",
-"zenburn", "haddock", and "textmate". Pass \code{NULL} to prevent syntax
-highlighting.}
-
 \item{lightbox}{if TRUE, add lightbox effect to content images}
 
 \item{thumbnails}{if TRUE display content images as thumbnails}
@@ -41,7 +35,7 @@ highlighting.}
 
 \item{toc_depth}{adjust table of contents depth}
 
-\item{embed_fonts}{if TRUE, use local files for fonts used in the template. This leads to bigger files but ensures that these fonts are available.}
+\item{embed_fonts}{if TRUE, use local files for fonts used in the template. This leads to bigger files but ensures that these fonts are available. If FALSE they are downloaded from Google Web Fonts.}
 
 \item{use_bookdown}{if TRUE, uses \code{\link[bookdown]{html_document2}} instead of \code{\link[rmarkdown]{html_document}}, thus providing numbered sections and cross references}
 
@@ -60,5 +54,7 @@ R Markdown output format to pass to \code{\link[rmarkdown]{render}}
 Format for converting from R Markdown to an HTML document.
 }
 \details{
-CSS taken from the docute project and adaptations made by John Coene.
+CSS taken from the docute project and adaptations made by John Coene. Please
+note that as syntax highlighting is done with the Prism JavaScript library,
+using the `highlight` argument here will have no effect.
 }
