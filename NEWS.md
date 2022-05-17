@@ -1,3 +1,13 @@
+# rmdformats 1.0.4
+
+- Fix scrolling behavior for tabs in material (#122, @bersbersbers)
+- Fix JS error in material
+- Fix thumbnail sizing in material (#120, @DOSull)
+- Fix TOC display in robobook when toc_depth > 2 (#126, @chamaoskurumi)
+- Fix unreadable hover tab text color in readthedown (#127, @sciatro)
+- Don't add magnific_popup dependency if lightbox is false (#128, @sciatro)
+- Remove unneeded jQueryUI dependency (#130, @sciatro)
+
 # rmdformats 1.0.3
 
 - New `downcute chaos` theme (thanks @zac-garland)
